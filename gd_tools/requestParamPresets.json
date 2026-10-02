@@ -1,0 +1,41 @@
+{
+    "getGJLevels21": [
+        {"str": "Bloodbath"},
+        {"type": "0"},
+        {"page": "0"}
+    ],
+    "downloadGJLevel22": [
+        {"levelID": "61079355"}
+    ],
+    "getGJScores20": [
+        {"type": "top"},
+        {"stat": "0"}
+    ],
+    "getGJAccountComments20": [
+        {"accountID": "71"},
+        {"page": "0"}
+    ],
+    "getGJComments21": [
+        {"levelID": "86407629"},
+        {"page": "0"},
+        {"mode": "1"}
+    ],
+    "getGJCommentHistory": [
+        {"userID": "16"},
+        {"page": "0"},
+        {"mode": "1"}
+    ],
+    "getGJLevelLists": [
+        {"str": "Progression Level 1"},
+        {"type": "0"}
+    ],
+    "getGJUserInfo20": [
+        {"targetAccountID": "26640571"}
+    ],
+    "getGJUsers20": [
+        {"str": "volumebeta"}
+    ],
+    "getGJSongInfo": [
+        {"songID": "467339"}
+    ]
+}

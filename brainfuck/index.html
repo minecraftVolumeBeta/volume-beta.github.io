@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>why did i make ts</title>
+    <link rel="stylesheet" type="text/css" href="brainfck.css">
+    <meta property="og:title" content="brainfuck">
+    <meta property="og:description" content="why are we here just to suffer">
+    <link rel="icon" type="image/x-icon" href="assets/index.ico">
+</head>
+<body>
+    <div class="container">
+        <h1>Brainfuck intepreter</h1>
+        <p class="subtitle">one of the stupidest things i could ever make lmfao</p>
+        <div class="editor-section">
+            <label>Brainfuck code:</label>
+            <div class="editor-container">
+                <div id="code-highlight" class="code-overlay"></div>
+                <textarea id="code-input" spellcheck="false" placeholder="++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>."></textarea>
+            </div>
+        </div>
+        <div class="control-panel">
+            <div class="input-group">
+                <label id="input-label" for="input-stream">Input (for <code>,</code> operator):</label>
+                <input type="text" id="input-stream">
+            </div>
+            <div class="speed-group">
+                <label for="speed-slider">Delay (ms): <span id="speed-val">50</span></label>
+                <input type="range" id="speed-slider" min="1" max="500" value="50">
+            </div>
+            <div class="buttons">
+                <button id="btn-run" class="btn btn-primary">Run!</button>
+                <button id="btn-pause" class="btn btn-warning" disabled>Pause</button>
+                <button id="btn-step" class="btn btn-secondary">Step</button>
+                <button id="btn-stop" class="btn btn-danger" disabled>Stop</button>
+            </div>
+        </div>
+        <div class="output-section">
+            <label for="output-field">Program output:</label>
+            <textarea id="output-field" readonly placeholder="?"></textarea>
+        </div>
+
+        <div class="memory-section">
+            <h2>Memory bytes (first 512)</h2>
+            <div class="memory-container">
+                <table id="memory-table">
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Value (DEC)</th>
+                            <th>Value (HEX)</th>
+                            <th>ASCII</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memory-body">
+                        <!-- javascript do ur job :) -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="brainfck.js"></script>
+</body>
+</html>

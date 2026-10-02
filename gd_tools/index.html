@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>random gd tools</title>
+        <link rel="stylesheet" type="text/css" href="gd_tools.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="random gd tools">
+        <meta property="og:description" content="holy larp">
+        <link rel="icon" type="image/x-icon" href="../assets/index.ico">
+    </head>
+    <body>
+        <div class="background-scroll">
+            <div class="carousel-wrapper">
+                <div class="pages-container">
+                    <div class="page active" id="page1">
+                        <fieldset>
+                        <legend class="golden-text">level string tools</legend>
+                        <p class="inline field">enter level string:</p>
+                        <br>
+                        <br>
+                        <textarea id="levelString" class="inline"></textarea>
+                        <br>
+                        <button id="decodeLvlStr">Decode data</button>
+                        <button id="saveGMD">Save as .gmd</button>
+                        <p>Upload .gmd</p>
+                        <input type="file" id="gmdUpload" accept=".gmd,.xml,.txt,.dat">
+                        <button onclick="gmdUpload.dispatchEvent(new Event('change'))">Go</button>
+                        <br>
+                        <br>
+                        <p class="inline field">parsed data:</p>
+                        <br>
+                        <textarea id="lvlStrOutput" class="inline"></textarea>
+                        <br>
+                        <br>
+                        <button id="compressGzip">Compress to gzip</button>
+                        <button id="encodeToLvlStr">encode back to level string</button>
+                        <p id="result"></p>
+                        </fieldset>
+                    </div>
+                    <div class="page" id="page2">
+                        <fieldset>
+                        <legend class="golden-text">request tools</legend>
+                        <label for="requestType">Select request endpoint:</label>
+                        <br>
+                        <select name="requestType" id="requestType">
+                            <option value="getGJLevels21">getGJLevels21</option>
+                            <option value="downloadGJLevel22">downloadGJLevel22</option>
+                            <option value="getGJLevelLists">getGJLevelLists</option>
+                            <option value="getGJScores20">getGJScores20</option>
+                            <option value="getGJAccountComments20">getGJAccountComments20</option>
+                            <option value="getGJComments21">getGJComments21</option>
+                            <option value="getGJCommentHistory">getGJCommentHistory</option>
+                            <option value="getGJUsers20">getGJUsers20</option>
+                            <option value="getGJUserInfo20">getGJUserInfo20</option>
+                            <option value="getGJSongInfo">getGJSongInfo</option>
+                        </select>
+                        <br>
+                        <p class="inline field">request parameters:</p>
+                        <br>
+                        <div id="requestParams">
+                            <h3>add keys and values:</h3>
+                            <div id="paramContainer">
+                                <!-- javascript do ur magic :) -->
+                            </div>
+                            <button id="addParam">new parameter</button>
+                            <button id="deleteParam">Delete last parameter</button>
+                        </div>
+                        <br>
+                        <button id="sendRequest">Request</button>
+                        <br>
+                        <br>
+                        <p class="inline field">Response:</p>
+                        <br>
+                        <textarea id="responseOutput" class="inline"></textarea>
+                        <br>
+                        <br>
+                        <button id="downloadResponse">Download response (.txt)</button>
+                        <br>
+                        <br>
+                        </fieldset>
+                    </div>
+                    <div class="page" id="page3">
+                        <fieldset>
+                        <legend class="golden-text">User tools</legend>
+                        <br>
+                        <label for="encryptionType">Select type:</label>
+                        <br>
+                        <select name="encryptionType" id="encryptionType">
+                            <option value="gjp2">GJP2</option>
+                            <option value="robtopCipher">RobTop Cipher</option>
+                            <option value="chk">Checksum</option>
+                        </select>
+                        <br>
+                        <br>
+                        <div id="credentialsContainer">
+                            <label for="username">Username:</label>
+                            <input type="text" for="username" id="username">
+                            <label for="password">Password:</label>
+                            <input type="password" for="password" id="password">
+                            <label for="plaintext">(optional) Plaintext:</label>
+                            <input type="text" for="plaintext" id="plaintext">
+                        </div>
+                        <br>
+                        <p class="inline field">Salt type:</p>
+                        <br>
+                        <select name="salt-type" id="saltType">
+                            <option value="lvlUploadSeed">Levek upload seed</option>
+                            <option value="commentChk">Comment checksum</option>
+                            <option value="likeRateChk">Like and rate checksum</option>
+                            <option value="updProfileChk">Update profile checksum</option>
+                            <option value="lvlLeaderboardChk">Level leaderboard checksum</option>
+                            <option value="vaultAndChamberCodes">Vault of Secrets & Chamber of Time codes</option>
+                            <option value="getGJChallengesHash">getGJChallenges hash</option>
+                            <option value="getGJRewardsHash">getGJRewards hash</option>
+                            <option value="gjp2">GJP2 checksum</option>
+                        </select>
+                        <br>
+                        <p class="inline field">XOR type:</p>
+                        <br>
+                        <select name="xor-type" id="xorType">
+                            <option value="saveData">Player save data</option>
+                            <option value="playerMessages">Player messages</option>
+                            <option value="vaultCodes">Vault codes</option>
+                            <option value="dailyChallenges">Daily challenges</option>
+                            <option value="levelPassword">Level password</option>
+                            <option value="commentIntegrity">Comment integrity</option>
+                            <option value="accountPassword">Account password</option>
+                            <option value="lvlLeaderboardIntegrity">Level leaderboard integrity</option>
+                            <option value="levelIntegrity">Level integrity</option>
+                            <option value="loadData">Load Data</option>
+                            <option value="multiplayer">Multiplayer</option>
+                            <option value="musicSFXLibrarySecret">Music & SFX Library Secret</option>
+                            <option value="rateIntegrity">Rating Integrity</option>
+                            <option value="chestRewards">Chest rewards</option>
+                            <option value="statSubmissionIntegrity">Stat submission integrity</option>
+                        </select>
+                        <br>
+                        <p class="inline field">(Make sure to match the salt and xor type)</p>
+                        <br>
+                        <br>
+                        <button id="generateEncryption">Encrypt</button>
+                        <br>
+                        <br>
+                        <p class="inline field">Encrypted data:</p>
+                        <br>
+                        <textarea id="encryptionOutput" class="inline"></textarea>
+                        <br>
+                        <br>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button id="prevBtn" class="nav-arrow" type="button">
+                        <img src="../assets/GJ_arrow_01_001.png" alt="Prev">
+                    </button>
+                    <span id="pageIndicator" class="golden-text">1/3</span>
+                    <button id="nextBtn" class="nav-arrow right-arrow" type="button">
+                        <img src="../assets/GJ_arrow_01_001.png" alt="Next">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script src="../node_modules/pako/dist/browser/pako.umd.min.js"></script>
+        <script src="../node_modules/js-base64/base64.js"></script>
+        <script src="gd_tools.js"></script>
+    </body>
+</html>

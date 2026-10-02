@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my site yay :3</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/index.ico">
+</head>
+<body>
+    <div class="background-scroll"></div>
+
+    <header class="top-nav">
+        <div class="social-links">
+            <a href="https://github.com/minecraftVolumeBeta" target="_blank" class="social-btn github">GitHub</a>
+            <a href="https://discord.com/users/965461616969777162" target="_blank" class="social-btn discord">Discord</a>
+            <a href="https://www.youtube.com/@minecraft_volume_beta.mp3" target="_blank" class="social-btn youtube">YouTube</a>
+            <a href="https://www.reddit.com/u/amongus10011/" target="_blank" class="social-btn reddit">Reddit</a>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <section class="profile-card">
+            <h1 class="golden-text">volumebeta</h1>
+            <img src="assets/volumebeta.jpg" alt="Profile Picture" class="profile-pic">
+            <p class="subtitle">developer • sorta music producer • gd players</p>
+            <hr class="divider">
+            
+            <div class="tools-grid">
+                <a href="./gd_tools" class="tool-card">
+                    <span class="card-title">GD Tools</span>
+                    <span class="card-desc">Level string decoder, GZIP compressor & RobTop API requester</span>
+                </a>
+
+                <a href="./brainfuck" class="tool-card">
+                    <span class="card-title">Brainfuck Interpreter</span>
+                    <span class="card-desc">A simple Brainfuck interpreter with a visual memory display</span>
+                </a>
+
+                <div class="tool-card disabled">
+                    <span class="card-title">Coming Soon</span>
+                    <span class="card-desc">More projects currently in development.</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="music-player">
+        <div class="song-info">
+            Now playing: <span id="songTitle">Loading...</span>
+        </div>
+        <!-- Hidden SoundCloud Widget iFrame -->
+        <iframe id="scWidget" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false" style="display:none;"></iframe>
+        
+        <div class="player-controls">
+            <span id="currentTime" class="time">0:00</span>
+            <input type="range" id="progressBar" value="0" min="0" max="100">
+            <span id="duration" class="time">0:00</span>
+            <div class="btn-group">
+                <button id="prevBtn" class="ctrl-btn" title="Previous">|◄</button>
+                <button id="playBtn" class="ctrl-btn" title="Play/Pause">▶</button>
+                <button id="nextBtn" class="ctrl-btn" title="Next">▶|</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
