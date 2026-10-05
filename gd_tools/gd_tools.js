@@ -28,6 +28,8 @@ const xorType = document.getElementById('xorType');
 const encryptButton = document.getElementById('generateEncryption');
 const encryptionOutput = document.getElementById('encryptionOutput');
 
+const API_BASE_URL = 'https://volume-beta-github-io.vercel.app';
+
 let k2Regex = /<k>k2<\/k>\s*<s>(.+?)<\/s>/
 let k4Regex = /<k>k4<\/k>\s*<s>(.+?)<\/s>/
 
@@ -133,7 +135,7 @@ async function sendRequest() {
     });
 
     try {
-        let response = await fetch('http://127.0.0.1:3000/api/proxy', {
+        let response = await fetch(`${API_BASE_URL}/api/proxy`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

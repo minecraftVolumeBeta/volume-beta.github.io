@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+const env = require('dotenv');
+env.config();
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +20,7 @@ app.post('/api/proxy', async (req, res) => {
                 boomlingsData.append(k, v);
             }
         }
-        boomlingsData.append('secret', 'Wmfd2893gb7');
+        boomlingsData.append('secret', process.env.GD_SECRET || 'Wmfd2893gb7');
 
         const response = await fetch(`http://www.boomlings.com/database/${endpoint}.php`, {
             method: 'POST',
@@ -45,7 +47,6 @@ app.post('/api/soundcloud', async (req, res) => {
     }
 
     try {
-        // 1. Resolve track using SoundCloud's official oembed endpoint
         const oembedUrl = `https://soundcloud.com/oembed?format=json&url=${encodeURIComponent(trackUrl)}`;
         const oembedRes = await fetch(oembedUrl);
 
@@ -55,7 +56,6 @@ app.post('/api/soundcloud', async (req, res) => {
 
         const oembedData = await oembedRes.json();
 
-        // Extract Track ID from iframe HTML in oembed response
         const iframeHtml = oembedData.html || '';
         const trackIdMatch = iframeHtml.match(/tracks%2F(\d+)/) || iframeHtml.match(/tracks\/(\d+)/);
 
@@ -65,7 +65,6 @@ app.post('/api/soundcloud', async (req, res) => {
 
         const trackId = trackIdMatch[1];
 
-        // 2. Query SoundCloud's public Widget API (does not require client_id)
         const widgetApiUrl = `https://api-widget.soundcloud.com/tracks/${trackId}`;
         const trackRes = await fetch(widgetApiUrl, {
             headers: {
@@ -84,11 +83,9 @@ app.post('/api/soundcloud', async (req, res) => {
             return res.status(400).json({ error: 'No media transcodings available for this track' });
         }
 
-        // 3. Find progressive MP3 or first available audio stream
         const transcoding = trackData.media.transcodings.find(t => t.format && t.format.protocol === 'progressive') 
                           || trackData.media.transcodings[0];
 
-        // 4. Request stream CDN URL safely
         const streamRes = await fetch(transcoding.url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
@@ -97,7 +94,6 @@ app.post('/api/soundcloud', async (req, res) => {
 
         const rawText = await streamRes.text();
         
-        // Handle empty/invalid JSON responses safely
         if (!rawText) {
             return res.status(400).json({ error: 'Empty response received from stream endpoint' });
         }
@@ -125,6 +121,9 @@ app.post('/api/soundcloud', async (req, res) => {
     }
 });
 
-app.listen(PORT, '127.0.0.1', () => {
-    console.log(`Server listening on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+}
+
+module.exports = app;
