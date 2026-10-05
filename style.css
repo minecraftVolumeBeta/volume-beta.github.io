@@ -87,6 +87,10 @@ body {
     background-image: url("assets/reddit.jpg")
 }
 
+.social-btn.newgrounds {
+    background-image: url("assets/newgrounds.png")
+}
+
 .social-btn:hover {
     transform: translateY(-2px) scale(1.05);
     background-color: rgba(191, 104, 40, 0.8);
