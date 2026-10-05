@@ -1,5 +1,5 @@
 const pako = window.pako;
-const Base64 = window.Base64;
+const Base64 = window.Base64 || (window.jsBase64 ? window.jsBase64.Base64 : null);
 const sha1 = window.sha1;
 
 const levelString = document.getElementById('levelString');
